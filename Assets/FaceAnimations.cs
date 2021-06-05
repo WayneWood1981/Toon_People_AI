@@ -19,6 +19,7 @@ public class FaceAnimations : MonoBehaviour
 
     public void restoreFaceAnimation(string newanim)
     {
+
         animator.SetLayerWeight(animator.GetLayerIndex(newanim), 0f);
     }
 }

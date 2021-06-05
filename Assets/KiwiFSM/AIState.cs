@@ -15,7 +15,12 @@ public enum AIStateId
     GETFRIDGE,
     OPENFRIDGE,
     GETTOILET,
-    SITTINGDOWNONTOILET
+    SITTINGDOWNONTOILET,
+    GETTOBED,
+    GOTOSLEEP,
+    GETPHONETOCALL,
+    CALLING,
+    ALERTED
 
 }
 public interface AIState

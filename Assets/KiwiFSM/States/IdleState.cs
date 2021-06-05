@@ -32,8 +32,12 @@ public class IdleState : AIState
             float dotProduct = Vector3.Dot(playerDirection, agentDirection);
             if (dotProduct > 0.0f)
             {
-                agent.stateMachine.ChangeState(AIStateId.CHASEPLAYER);
+                //agent.stateMachine.ChangeState(AIStateId.CHASEPLAYER);
             }
+        }
+        else
+        {
+            agent.playerTransform = null;
         }
         
     }

@@ -16,7 +16,11 @@ public class SittingDownOnToiletState : AIState
     {
         agent.playerTransform = GameObject.FindGameObjectWithTag("Toilet").transform;
         agent.transform.position = agent.playerTransform.position;
-        agent.transform.rotation = agent.playerTransform.rotation;
+        if (agent.navMeshAgent.desiredVelocity != Vector3.zero)
+        {
+            agent.transform.rotation = agent.playerTransform.rotation;
+        }
+        
         agent.animator.SetBool("SittingDown", true);
         timer = agent.randomTimeDoingDecision();
         
@@ -26,7 +30,7 @@ public class SittingDownOnToiletState : AIState
     {
         timer -= Time.deltaTime;
         agent.navMeshAgent.speed = 0.0f;
-        agent.faceAnimations.playFaceAnimation("disgusted");
+        agent.faceAnimations.playFaceAnimation("disgust");
         if (timer <= 0.0)
         {
             timer = 0.0f;
@@ -43,7 +47,7 @@ public class SittingDownOnToiletState : AIState
 
     void AIState.Exit(AIAgent agent)
     {
-        
+        agent.faceAnimations.restoreFaceAnimation("disgust");
     }
 
     

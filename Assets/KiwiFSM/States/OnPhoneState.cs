@@ -44,7 +44,7 @@ public class OnPhoneState : AIState
 
     void AIState.Exit(AIAgent agent)
     {
-        
+        agent.faceAnimations.restoreFaceAnimation("happy");
     }
 
 

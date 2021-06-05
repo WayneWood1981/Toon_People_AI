@@ -31,7 +31,8 @@ public class DecisionMaker : MonoBehaviour
     {
         lastNumber = randomNumber;
         randomNumber = Random.Range(0, decisions.Length);
-
+        //lastNumber = 1;
+        //randomNumber = 3;
         if(randomNumber == lastNumber)
         {
             MakeADecision();
@@ -47,7 +48,7 @@ public class DecisionMaker : MonoBehaviour
             else if (randomNumber == 1)
             {
                 Debug.Log("Sleep");
-                GetComponent<AIAgent>().stateMachine.ChangeState(AIStateId.GETTOILET);
+                GetComponent<AIAgent>().stateMachine.ChangeState(AIStateId.GETTOBED);
 
             }
             else if (randomNumber == 2)
@@ -66,7 +67,7 @@ public class DecisionMaker : MonoBehaviour
             else if (randomNumber == 4)
             {
                 Debug.Log("Call Friend");
-                GetComponent<AIAgent>().stateMachine.ChangeState(AIStateId.GETCHAIR);
+                GetComponent<AIAgent>().stateMachine.ChangeState(AIStateId.GETPHONETOCALL);
 
             }
             else if (randomNumber == 5)

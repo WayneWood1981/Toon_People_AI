@@ -18,11 +18,10 @@ public class OpenFridgeState : AIState
 
         agent.playerTransform = GameObject.FindGameObjectWithTag("Fridge").transform;
         agent.transform.position = agent.playerTransform.position;
-        agent.transform.rotation = agent.playerTransform.rotation;
-
-        Vector3 rot = agent.transform.rotation.eulerAngles;
-        rot = new Vector3(rot.x, rot.y + 180, rot.z);
-        agent.transform.rotation = Quaternion.Euler(rot);
+        if (agent.navMeshAgent.desiredVelocity != Vector3.zero)
+        {
+            agent.transform.rotation = agent.playerTransform.rotation;
+        }
 
         timer = agent.randomTimeDoingDecision();
     }

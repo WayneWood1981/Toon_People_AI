@@ -30,7 +30,7 @@ public class GetChairState : AIState
             agent.navMeshAgent.speed = 0.5f;
             
             agent.navMeshAgent.SetDestination(agent.playerTransform.position);
-            agent.character.Move(agent.navMeshAgent.desiredVelocity, false, false);
+            //agent.character.Move(agent.navMeshAgent.desiredVelocity, false, false);
         }
 
         Vector3 direction = (agent.playerTransform.position - agent.navMeshAgent.destination);
@@ -40,17 +40,19 @@ public class GetChairState : AIState
         if (agent.navMeshAgent.pathStatus != NavMeshPathStatus.PathPartial)
         {
 
-
+            
 
             if (agent.navMeshAgent.remainingDistance > agent.navMeshAgent.stoppingDistance)
             {
-                agent.navMeshAgent.speed = 0.5f;
+                agent.navMeshAgent.speed = 0.8f;
+                agent.animator.SetFloat("Speed", 0.5f);
                 agent.navMeshAgent.SetDestination(agent.playerTransform.position);
-                agent.character.Move(agent.navMeshAgent.desiredVelocity, false, false);
+                //agent.character.Move(agent.navMeshAgent.desiredVelocity, false, false);
+               
             }
             else
             {
-                agent.character.Move(Vector3.zero, false, false);
+                //agent.character.Move(Vector3.zero, false, false);
             }
 
         }
@@ -66,8 +68,8 @@ public class GetChairState : AIState
             agent.playerTransform = null;
             agent.navMeshAgent.speed = 0f;
             agent.stateMachine.ChangeState(AIStateId.SITTINGDOWN);
-            agent.character.Move(Vector3.zero, false, false);
-            agent.transform.Rotate(-direction);
+            //agent.character.Move(Vector3.zero, false, false);
+            //agent.transform.Rotate(-direction);
         }
         
 

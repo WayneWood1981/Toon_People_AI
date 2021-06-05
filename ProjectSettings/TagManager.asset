@@ -11,6 +11,8 @@ TagManager:
   - Toilet
   - Bed
   - NPC
+  - FridgeMarker
+  - Interfered
   layers:
   - Default
   - TransparentFX

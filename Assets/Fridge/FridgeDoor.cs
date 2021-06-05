@@ -41,7 +41,7 @@ public class FridgeDoor : MonoBehaviour
             rotationAngle += rotateSpeed * Time.deltaTime;
             fridgeDoor.transform.Rotate(0, rotationAngle, 0);
             
-            if (rotationAngle >= 1.5f)
+            if (rotationAngle >= 1.65f)
             {
                 doorOpen = false;
                 

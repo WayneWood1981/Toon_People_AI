@@ -7,7 +7,7 @@ public class AnimatorMove : MonoBehaviour
 {
 
     public Animator anim;
-    public NavMeshAgent agent;
+    public NavMeshAgent navMeshAgent;
     Vector2 smoothDeltaPosition = Vector2.zero;
     Vector2 velocity = Vector2.zero;
 
@@ -15,24 +15,28 @@ public class AnimatorMove : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    private void FixedUpdate() // was OnAnimationMove() but this caused root motion problems
     {
+        this.transform.position = navMeshAgent.nextPosition;
 
         if (Time.deltaTime > 1e-5f)
         {
             velocity = smoothDeltaPosition / Time.deltaTime;
+            anim.SetFloat("Speed", navMeshAgent.speed);
         }
-        //anim.SetFloat("Speed", agent.velocity.y);
-        //anim.SetFloat("Speed", agent.velocity.x);
-        //anim.SetFloat("Speed", agent.velocity.z);
-    }
+        
+        
+        if (navMeshAgent.desiredVelocity != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(navMeshAgent.desiredVelocity);
 
-    void OnAnimatorMove()
-    {
-        this.transform.position = agent.nextPosition;
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, navMeshAgent.angularSpeed * Time.deltaTime);
+        }
     }
 }
